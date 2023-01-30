@@ -1,16 +1,27 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './NavBar.css';
+import { useRef, useContext } from 'react';
+import { ProductContext } from '../../contexts/ProductProvider';
 
 const NavBar = () => {
+    const navigate = useNavigate();
+    const{getProducts} = useContext(ProductContext);
+    const searchVal = useRef();
 
+    const handleClick = () => {
+        navigate("/displaysearch");
+    }
 
     return(
         <>
             <nav className='navbar'>
-                <h2 className="logo">HEJSAN</h2>
+                <NavLink to="/" className="logo">TopStyle</NavLink>
                 <div className='search-bar-button'>
-                    <input type="text" placeholder="Sök produkter" />
-                    <button onClick={() => searchProducts()}>Sök</button>
+                    <input type="text" ref={searchVal} placeholder="Sök produkter" />
+                    <button onClick={() => {
+                        handleClick();
+                        getProducts(searchVal.current.value)
+                        }}>Sök</button>
                 </div>               
                 <NavLink to="/login">Logga in</NavLink>
             </nav>

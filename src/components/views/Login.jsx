@@ -2,7 +2,7 @@
 const Login = () => {
 
     return(
-        'hello world'
+        <p>Login</p>
     )
 }
 
