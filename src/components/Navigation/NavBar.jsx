@@ -1,16 +1,14 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 import { useRef, useContext } from 'react';
 import { ProductContext } from '../../contexts/ProductProvider';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
-    const navigate = useNavigate();
-    const{getProducts} = useContext(ProductContext);
+    const{getProducts, changePageSearch} = useContext(ProductContext);
     const searchVal = useRef();
-
-    const handleClick = () => {
-        navigate("/displaysearch");
-    }
+    const element = <FontAwesomeIcon icon={faCartShopping} />
 
     return(
         <>
@@ -19,11 +17,14 @@ const NavBar = () => {
                 <div className='search-bar-button'>
                     <input type="text" ref={searchVal} placeholder="Sök produkter" />
                     <button onClick={() => {
-                        handleClick();
+                        changePageSearch();
                         getProducts(searchVal.current.value)
                         }}>Sök</button>
+                </div>
+                <div className='cart-login'>
+                    <NavLink to="/">{element}</NavLink> 
+                    <NavLink to="/login">Logga in</NavLink>
                 </div>               
-                <NavLink to="/login">Logga in</NavLink>
             </nav>
         </>
     )

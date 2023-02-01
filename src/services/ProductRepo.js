@@ -1,25 +1,31 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import { db } from '../firebase';
 
-const GetDbProducts = async (searchVal) => {
+export const GetDbProducts = async (searchVal) => {
     let filteredProducts = [];
     if(searchVal === ""){
         const queryDb = await getDocs(collection(db, "products"));
         queryDb.forEach((doc) => {
-            //console.log(doc.id, " => ", doc.data());
-            filteredProducts.push(doc.data());
+            filteredProducts.push({id: doc.id, data: doc.data()});
         });
         return(filteredProducts); 
     }else{
         const queryDb = await getDocs(collection(db, "products"));
         queryDb.forEach((doc) => {
-            if(doc.data().name.includes(searchVal)){
-                filteredProducts.push(doc.data());
+            if(doc.data().name.toLowerCase().includes(searchVal.toLowerCase())){
+                filteredProducts.push({id: doc.id, data: doc.data()});
             }
         });
         return(filteredProducts);
     }
-    
 }
 
-export default GetDbProducts;
+export const GetDbSingleProduct = async (productId) => {
+    const docRef = doc(db, "products", productId.toString());
+    const queryDb = await getDoc(docRef);
+    if(queryDb.exists()){
+        return queryDb.data();
+    } else {
+        console.log("Error, cant find document.")
+    }
+}

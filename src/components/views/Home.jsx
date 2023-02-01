@@ -1,9 +1,9 @@
+import SearchResult from './DisplaySearch';
 
 const Home = () => {
-
     return(
         <>
-            <p>Home</p>
+            <SearchResult />
         </>
     )
 }
