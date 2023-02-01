@@ -8,7 +8,7 @@ const Signup = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const{signup} = useContext(UserContext);
+    const{signup, currentUser} = useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,6 +35,7 @@ const Signup = () => {
             <Card>
                 <Card.Body>
                     <h2 className='text-center mb-4'>Sign up</h2>
+                    {currentUser.email}
                     {error && <Alert variant='danger'>{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id='email'>
@@ -49,7 +50,7 @@ const Signup = () => {
                             <Form.Label>Password Confirmation</Form.Label>
                             <Form.Control type='password' ref={passwordConfirmRef} required />
                         </Form.Group>
-                        <Button disabled={loading} className='w-100' type='submit'>Sign Up</Button>
+                        <Button disabled={loading} className='w-100 mt-3' type='submit'>Sign Up</Button>
                     </Form>
                 </Card.Body>
             </Card>

@@ -16,14 +16,14 @@ const NavBar = () => {
                 <NavLink to="/" className="logo">TopStyle</NavLink>
                 <div className='search-bar-button'>
                     <input type="text" ref={searchVal} placeholder="Sök produkter" />
-                    <button onClick={() => {
+                    <button className='search-button' onClick={() => {
                         changePageSearch();
                         getProducts(searchVal.current.value)
                         }}>Sök</button>
                 </div>
                 <div className='cart-login'>
-                    <NavLink to="/">{element}</NavLink> 
-                    <NavLink to="/login">Logga in</NavLink>
+                    <NavLink className="cart" to="/">{element}</NavLink> 
+                    <NavLink className="login" to="/login">Logga in</NavLink>
                 </div>               
             </nav>
         </>

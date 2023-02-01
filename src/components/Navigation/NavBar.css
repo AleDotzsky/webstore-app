@@ -7,11 +7,22 @@
     padding: 10px;
 }
 
+.cart{
+    color: white;
+    padding-right: 10px;
+}
+
+.login{
+    color:white;
+    text-decoration: none;
+}
+
 .logo {
     color: #fff;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     text-decoration: none;
+    padding-left: 20px;
 }
 
 input[type="text"] {
@@ -21,7 +32,7 @@ input[type="text"] {
     border: none;
 }
 
-button {
+.search-button {
     background-color: #fff;
     color: #333;
     padding: 10px;
